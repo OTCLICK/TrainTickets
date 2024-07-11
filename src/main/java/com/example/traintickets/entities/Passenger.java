@@ -38,7 +38,7 @@ public class Passenger extends BaseEntity {
     }
     @Column(name = "email")
     public String getEmail() {
-        return getEmail();
+        return email;
     }
 
     public void setEmail(String email) {

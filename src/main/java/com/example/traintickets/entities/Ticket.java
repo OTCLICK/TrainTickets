@@ -10,9 +10,9 @@ public class Ticket extends BaseEntity {
     private RailwayCarriage railwayCarriage;
     private Place place;
     private Passenger passenger;
-    private long ticketPrice;
+    private float ticketPrice;
 
-    public Ticket(Train train, RailwayCarriage railwayCarriage, Place place, Passenger passenger, long ticketPrice) {
+    public Ticket(Train train, RailwayCarriage railwayCarriage, Place place, Passenger passenger, float ticketPrice) {
         setTrain(train);
         setRailwayCarriage(railwayCarriage);
         setPlace(place);
@@ -64,11 +64,11 @@ public class Ticket extends BaseEntity {
     }
 
     @Column(name = "ticket_price")
-    public long getTicketPrice() {
+    public float getTicketPrice() {
         return ticketPrice;
     }
 
-    public void setTicketPrice(long ticketPrice) {
+    public void setTicketPrice(float ticketPrice) {
         this.ticketPrice = ticketPrice;
     }
 }

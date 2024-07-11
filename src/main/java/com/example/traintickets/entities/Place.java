@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "place")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class Place extends RailwayCarriage {
+public class Place extends BaseEntity {
     private int placeNumber;
     private RailwayCarriage railwayCarriage;
     private BookingStatusEnum bookingStatus;

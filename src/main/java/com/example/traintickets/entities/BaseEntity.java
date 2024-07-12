@@ -3,7 +3,7 @@ package com.example.traintickets.entities;
 import jakarta.persistence.*;
 
 @MappedSuperclass
-public class BaseEntity {
+public abstract class BaseEntity {
     private int id;
 
     @Id

@@ -3,6 +3,7 @@ package com.example.traintickets.repositories;
 import com.example.traintickets.entities.CarsTypesEnum;
 import com.example.traintickets.entities.Place;
 import com.example.traintickets.entities.Ticket;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -12,7 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 @Repository
-public interface TicketRepository extends CrudRepository<Ticket, Integer> {
+public interface TicketRepository extends JpaRepository<Ticket, Integer> {
 
     List<Ticket> findAllByPlace(Place place);
 

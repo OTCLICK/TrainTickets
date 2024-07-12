@@ -24,7 +24,7 @@ public class Ticket extends BaseEntity {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "train_id", referencedColumnName = "id")
+    @JoinColumn(name = "train_id", referencedColumnName = "id", nullable = false)
     public Train getTrain() {
         return train;
     }
@@ -34,7 +34,7 @@ public class Ticket extends BaseEntity {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "railway_carriage_id", referencedColumnName = "id")
+    @JoinColumn(name = "railway_carriage_id", referencedColumnName = "id", nullable = false)
     public RailwayCarriage getRailwayCarriage() {
         return railwayCarriage;
     }
@@ -44,7 +44,7 @@ public class Ticket extends BaseEntity {
     }
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "place_id", referencedColumnName = "id")
+    @JoinColumn(name = "place_id", referencedColumnName = "id", nullable = false)
     public Place getPlace() {
         return place;
     }
@@ -54,7 +54,7 @@ public class Ticket extends BaseEntity {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "passenger_id", referencedColumnName = "id")
+    @JoinColumn(name = "passenger_id", referencedColumnName = "id", nullable = false)
     public Passenger getPassenger() {
         return passenger;
     }
@@ -63,7 +63,7 @@ public class Ticket extends BaseEntity {
         this.passenger = passenger;
     }
 
-    @Column(name = "ticket_price")
+    @Column(name = "ticket_price", nullable = false)
     public float getTicketPrice() {
         return ticketPrice;
     }

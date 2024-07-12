@@ -23,7 +23,7 @@ public class Train extends BaseEntity {
     protected Train() {
     }
 
-    @Column(name = "train_number")
+    @Column(name = "train_number", nullable = false)
     public String getTrainNumber() {
         return trainNumber;
     }
@@ -32,7 +32,7 @@ public class Train extends BaseEntity {
         this.trainNumber = trainNumber;
     }
 
-    @Column(name = "departure_time")
+    @Column(name = "departure_time", nullable = false)
     public Date getDepartureTime() {
         return departureTime;
     }
@@ -40,7 +40,7 @@ public class Train extends BaseEntity {
     public void setDepartureTime(Date departureTime) {
         this.departureTime = departureTime;
     }
-    @Column(name = "arrival_time")
+    @Column(name = "arrival_time", nullable = false)
     public Date getArrivalTime() {
         return arrivalTime;
     }
@@ -48,7 +48,7 @@ public class Train extends BaseEntity {
     public void setArrivalTime(Date arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
-    @Column(name = "route")
+    @Column(name = "route", nullable = false)
     public String getRoute() {
         return route;
     }

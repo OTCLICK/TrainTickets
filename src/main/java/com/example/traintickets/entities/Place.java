@@ -19,7 +19,7 @@ public class Place extends BaseEntity {
     protected Place() {
     }
 
-    @Column(name = "place_number")
+    @Column(name = "place_number", nullable = false)
     public int getPlaceNumber() {
         return placeNumber;
     }
@@ -29,7 +29,7 @@ public class Place extends BaseEntity {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "railway_carriage_id", referencedColumnName = "id")
+    @JoinColumn(name = "railway_carriage_id", referencedColumnName = "id", nullable = false)
     public RailwayCarriage getRailwayCarriage() {
         return railwayCarriage;
     }
@@ -37,7 +37,7 @@ public class Place extends BaseEntity {
     public void setRailwayCarriage(RailwayCarriage railwayCarriage) {
         this.railwayCarriage = railwayCarriage;
     }
-    @Column(name = "booking_status")
+    @Column(name = "booking_status", nullable = false)
     public BookingStatusEnum getBookingStatus() {
         return bookingStatus;
     }

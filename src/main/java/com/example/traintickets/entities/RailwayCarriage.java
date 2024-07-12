@@ -21,7 +21,7 @@ public class RailwayCarriage extends BaseEntity {
     protected RailwayCarriage() {
     }
 
-    @Column(name = "car_number")
+    @Column(name = "car_number", nullable = false)
     public int getCarNumber() {
         return carNumber;
     }
@@ -31,7 +31,7 @@ public class RailwayCarriage extends BaseEntity {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "train_id", referencedColumnName = "id")
+    @JoinColumn(name = "train_id", referencedColumnName = "id", nullable = false)
     public Train getTrain() {
         return train;
     }
@@ -47,7 +47,7 @@ public class RailwayCarriage extends BaseEntity {
     public void setSeatsNumber(int seatsNumber) {
         this.seatsNumber = seatsNumber;
     }
-    @Column(name = "car_type")
+    @Column(name = "car_type", nullable = false)
     public CarsTypesEnum getCarType() {
         return carType;
     }

@@ -19,7 +19,7 @@ public class Passenger extends BaseEntity {
     protected Passenger() {
     }
 
-    @Column(name = "passenger_name")
+    @Column(name = "passenger_name", nullable = false)
     public String getPassengerName() {
         return passengerName;
     }
@@ -28,7 +28,7 @@ public class Passenger extends BaseEntity {
         this.passengerName = passengerName;
     }
 
-    @Column(name = "passport_details")
+    @Column(name = "passport_details", nullable = false)
     public String getPassportDetails() {
         return passportDetails;
     }
@@ -36,7 +36,7 @@ public class Passenger extends BaseEntity {
     public void setPassportDetails(String passportDetails) {
         this.passportDetails = passportDetails;
     }
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
     public String getEmail() {
         return email;
     }

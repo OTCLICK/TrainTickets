@@ -2,6 +2,8 @@ package com.example.traintickets.entities;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "ticket")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -11,13 +13,18 @@ public class Ticket extends BaseEntity {
     private Place place;
     private Passenger passenger;
     private float ticketPrice;
+    private Date bookingTime;
+    private Date paymentTime;
 
-    public Ticket(Train train, RailwayCarriage railwayCarriage, Place place, Passenger passenger, float ticketPrice) {
+    public Ticket(Train train, RailwayCarriage railwayCarriage, Place place, Passenger passenger,
+                  float ticketPrice, Date bookingTime, Date paymentTime) {
         setTrain(train);
         setRailwayCarriage(railwayCarriage);
         setPlace(place);
         setPassenger(passenger);
         setTicketPrice(ticketPrice);
+        setBookingTime(bookingTime);
+        setPaymentTime(paymentTime);
     }
 
     protected Ticket() {
@@ -70,5 +77,23 @@ public class Ticket extends BaseEntity {
 
     public void setTicketPrice(float ticketPrice) {
         this.ticketPrice = ticketPrice;
+    }
+
+    @Column(name = "booking_time", nullable = false)
+    public Date getBookingTime() {
+        return bookingTime;
+    }
+
+    public void setBookingTime(Date bookingTime) {
+        this.bookingTime = bookingTime;
+    }
+
+    @Column(name = "payment_time", nullable = false)
+    public Date getPaymentTime() {
+        return paymentTime;
+    }
+
+    public void setPaymentTime(Date paymentTime) {
+        this.paymentTime = paymentTime;
     }
 }

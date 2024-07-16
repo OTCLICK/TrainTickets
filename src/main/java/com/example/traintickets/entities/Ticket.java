@@ -88,7 +88,7 @@ public class Ticket extends BaseEntity {
         this.bookingTime = bookingTime;
     }
 
-    @Column(name = "payment_time", nullable = false)
+    @Column(name = "payment_time")
     public Date getPaymentTime() {
         return paymentTime;
     }

@@ -11,9 +11,17 @@ import java.util.List;
 @Repository
 public interface PassengerRepository extends JpaRepository<Passenger, Integer> {
 
-    //Search passengers to verify their purchase of train tickets
-    @Query(value = "SELECT p FROM Passenger p " +
-            "WHERE p.passengerName = :passengerName AND p.passportDetails = :passportDetails")
-    List<Passenger> findAllByPassengerNameAndPassportDetails(@Param(value = "passenger_name") String passengerName,
-                                                             @Param(value = "passport_details") String passportDetails);
+    @Query(value = "SELECT p FROM Passenger p WHERE p.id = :id")
+    List<Passenger> findById(@Param(value = "id") int id);
+
+    @Query(value = "SELECT p FROM Passenger p WHERE p.email = :email")
+    List<Passenger> findByEmail(@Param(value = "email") String email);
+
+    Passenger save(Passenger passenger);
+
+//    //Search passengers to verify their purchase of train tickets
+//    @Query(value = "SELECT p FROM Passenger p " +
+//            "WHERE p.passengerName = :passengerName AND p.passportDetails = :passportDetails")
+//    List<Passenger> findAllByPassengerNameAndPassportDetails(@Param(value = "passenger_name") String passengerName,
+//                                                             @Param(value = "passport_details") String passportDetails);
 }

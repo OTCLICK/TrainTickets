@@ -15,13 +15,23 @@ import java.util.List;
 @Repository
 public interface PlaceRepository extends JpaRepository<Place, Integer> {
 
-    List<Place> findAllByRailwayCarriage(RailwayCarriage railwayCarriage);
+    @Query(value = "SELECT p FROM Place p WHERE p.id = :id")
+    List<Place> findById(@Param(value = "id") int id);
 
-    //Search free/booked/occupied seats
-    @Query(value = "SELECT p FROM Place p WHERE p.bookingStatus = :bookingStatus")
-    List<Place> findAllByBookingStatus(@Param(value = "booking_status") BookingStatusEnum bookingStatus);
+    @Query("SELECT p FROM Place p WHERE p.railwayCarriage = :railwayCarriage AND p.bookingStatus = :status")
+    List<Place> findByRailwayCarriageAndBookingStatus(@Param(value = "railwayCarriage") RailwayCarriage railwayCarriage,
+                                                      @Param(value = "status") BookingStatusEnum status);
 
-    //Search seats on a specific type of carriage
-    @Query("SELECT p FROM Place p JOIN p.railwayCarriage rc WHERE rc.carType = :carType")
-    List<Place> findPlacesByCarType(@Param("car_type") CarsTypesEnum carType);
+    Place save(Place place);
+
+
+//    List<Place> findAllByRailwayCarriage(RailwayCarriage railwayCarriage);
+//
+//    //Search free/booked/occupied seats
+//    @Query(value = "SELECT p FROM Place p WHERE p.bookingStatus = :bookingStatus")
+//    List<Place> findAllByBookingStatus(@Param(value = "booking_status") BookingStatusEnum bookingStatus);
+//
+//    //Search seats on a specific type of carriage
+//    @Query("SELECT p FROM Place p JOIN p.railwayCarriage rc WHERE rc.carType = :carType")
+//    List<Place> findPlacesByCarType(@Param("car_type") CarsTypesEnum carType);
 }

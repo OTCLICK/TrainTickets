@@ -2,6 +2,7 @@ package com.example.traintickets.repositories.impl;
 
 import com.example.traintickets.entities.RailwayCarriage;
 import com.example.traintickets.repositories.RailwayCarriageRepository;
+import com.example.traintickets.repositories.base.BaseRailwayCarriageRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +40,9 @@ public class RailwayCarriageRepositoryImpl implements RailwayCarriageRepository 
         return railwayCarriage;
     }
 
-    interface BaseRailwayCarriageRepository extends JpaRepository<RailwayCarriage, Integer> {
-        @Query(value = "SELECT r FROM RailwayCarriage r WHERE r.id = :id")
-        List<RailwayCarriage> findById(@Param(value = "id") int id);
-    }
+//    @Repository
+//    interface BaseRailwayCarriageRepository extends JpaRepository<RailwayCarriage, Integer> {
+//        @Query(value = "SELECT r FROM RailwayCarriage r WHERE r.id = :id")
+//        List<RailwayCarriage> findById(@Param(value = "id") int id);
+//    }
 }

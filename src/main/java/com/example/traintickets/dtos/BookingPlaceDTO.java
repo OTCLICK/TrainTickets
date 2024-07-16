@@ -12,5 +12,6 @@ public class BookingPlaceDTO {
     private int passengerId;
     private float ticketPrice;
     private String bookingPlace;
+    private Date bookingTime;
     private Date paymentTime;
 }

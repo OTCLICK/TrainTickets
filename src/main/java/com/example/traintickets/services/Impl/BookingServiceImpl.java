@@ -1,9 +1,7 @@
 package com.example.traintickets.services.Impl;
 
-import com.example.traintickets.entities.BookingStatusEnum;
-import com.example.traintickets.entities.Passenger;
-import com.example.traintickets.entities.Place;
-import com.example.traintickets.entities.Ticket;
+import com.example.traintickets.dtos.*;
+import com.example.traintickets.entities.*;
 import com.example.traintickets.repositories.*;
 import com.example.traintickets.services.BookingService;
 import jakarta.transaction.Transactional;
@@ -86,7 +84,7 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     @Transactional
-    public Ticket createTicket(int placeId, int passengerId, float ticketPrice, Date bookingTime, Date paymentTime) {
+    public TicketDTO createTicket(int placeId, int passengerId, float ticketPrice, Date bookingTime, Date paymentTime) {
         List<Place> placeList = placeRepository.findById(placeId);
         if (placeList.isEmpty()) {
             throw new IllegalArgumentException("Такого места не существует!");
@@ -123,7 +121,60 @@ public class BookingServiceImpl implements BookingService {
         }
 
         ticketRepository.save(ticket);
-        return ticket;
+//        return ticket;
+        return mapToDTO(ticket);
+    }
+
+    private TicketDTO mapToDTO(Ticket ticket) {
+        TicketDTO ticketDTO = new TicketDTO();
+        ticketDTO.setId(ticket.getId());
+        ticketDTO.setTrain(mapToDTO(ticket.getTrain()));
+        ticketDTO.setRailwayCarriage(mapToDTO(ticket.getRailwayCarriage()));
+        ticketDTO.setPlace(mapToDTO(ticket.getPlace()));
+        ticketDTO.setPassenger(mapToDTO(ticket.getPassenger()));
+        ticketDTO.setTicketPrice(ticket.getTicketPrice());
+        ticketDTO.setBookingTime(ticket.getBookingTime());
+        ticketDTO.setPaymentTime(ticket.getPaymentTime());
+        return ticketDTO;
+    }
+
+    private TrainDTO mapToDTO(Train train) {
+        TrainDTO trainDTO = new TrainDTO();
+        trainDTO.setId(train.getId());
+        trainDTO.setTrainNumber(train.getTrainNumber());
+        trainDTO.setDepartureTime(train.getDepartureTime());
+        trainDTO.setArrivalTime(train.getArrivalTime());
+        trainDTO.setRoute(train.getRoute());
+        return trainDTO;
+    }
+
+    private RailwayCarriageDTO mapToDTO(RailwayCarriage railwayCarriage) {
+        RailwayCarriageDTO railwayCarriageDTO = new RailwayCarriageDTO();
+        railwayCarriageDTO.setId(railwayCarriage.getId());
+        railwayCarriageDTO.setCarNumber(railwayCarriage.getCarNumber());
+        railwayCarriageDTO.setTrain(mapToDTO(railwayCarriage.getTrain()));
+        railwayCarriageDTO.setSeatsNumber(railwayCarriage.getSeatsNumber());
+        railwayCarriageDTO.setCarType(railwayCarriage.getCarType());
+        return railwayCarriageDTO;
+    }
+
+    private PlaceDTO mapToDTO(Place place) {
+        PlaceDTO placeDTO = new PlaceDTO();
+        placeDTO.setId(place.getId());
+        placeDTO.setPlaceNumber(place.getPlaceNumber());
+        placeDTO.setRailwayCarriage(mapToDTO(place.getRailwayCarriage()));
+        placeDTO.setBookingStatus(place.getBookingStatus());
+        return placeDTO;
+    }
+
+    private PassengerDTO mapToDTO(Passenger passenger) {
+        PassengerDTO passengerDTO = new PassengerDTO();
+        passengerDTO.setId(passenger.getId());
+        passengerDTO.setPassengerName(passenger.getPassengerName());
+        passengerDTO.setPassportDetails(passenger.getPassportDetails());
+        passengerDTO.setEmail(passenger.getEmail());
+        passengerDTO.setTripsNumber(passenger.getTripsNumber());
+        return passengerDTO;
     }
 
 }

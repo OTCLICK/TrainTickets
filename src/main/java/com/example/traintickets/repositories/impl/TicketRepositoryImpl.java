@@ -3,6 +3,7 @@ package com.example.traintickets.repositories.impl;
 import com.example.traintickets.entities.Passenger;
 import com.example.traintickets.entities.Ticket;
 import com.example.traintickets.repositories.TicketRepository;
+import com.example.traintickets.repositories.base.BaseTicketRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,11 +49,12 @@ public class TicketRepositoryImpl implements TicketRepository {
         return ticket;
     }
 
-    interface BaseTicketRepository extends JpaRepository<Ticket, Integer> {
-        @Query(value = "SELECT t FROM Ticket t WHERE t.id = :id")
-        List<Ticket> findById(@Param(value = "id") int id);
-
-        @Query(value = "SELECT t FROM Ticket t WHERE t.passenger = :passenger")
-        List<Ticket> findByPassenger(@Param(value = "passenger") Passenger passenger);
-    }
+//    @Repository
+//    interface BaseTicketRepository extends JpaRepository<Ticket, Integer> {
+//        @Query(value = "SELECT t FROM Ticket t WHERE t.id = :id")
+//        List<Ticket> findById(@Param(value = "id") int id);
+//
+//        @Query(value = "SELECT t FROM Ticket t WHERE t.passenger = :passenger")
+//        List<Ticket> findByPassenger(@Param(value = "passenger") Passenger passenger);
+//    }
 }

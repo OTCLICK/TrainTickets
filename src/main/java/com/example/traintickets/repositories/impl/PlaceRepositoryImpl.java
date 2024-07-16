@@ -5,6 +5,7 @@ import com.example.traintickets.entities.Passenger;
 import com.example.traintickets.entities.Place;
 import com.example.traintickets.entities.RailwayCarriage;
 import com.example.traintickets.repositories.PlaceRepository;
+import com.example.traintickets.repositories.base.BasePlaceRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,13 +52,14 @@ public class PlaceRepositoryImpl implements PlaceRepository {
         return place;
     }
 
-    interface BasePlaceRepository extends JpaRepository<Place, Integer> {
-        @Query(value = "SELECT p FROM Place p WHERE p.id = :id")
-        List<Place> findById(@Param(value = "id") int id);
-
-        @Query(value = "SELECT p FROM Place p WHERE p.railwayCarriage = :railwayCarriage AND p.bookingStatus = :status")
-        List<Place> findByRailwayCarriageAndBookingStatus(@Param(value = "railwayCarriage")
-                                                          RailwayCarriage railwayCarriage,
-                                                          @Param(value = "status") BookingStatusEnum status);
-    }
+//    @Repository
+//    interface BasePlaceRepository extends JpaRepository<Place, Integer> {
+//        @Query(value = "SELECT p FROM Place p WHERE p.id = :id")
+//        List<Place> findById(@Param(value = "id") int id);
+//
+//        @Query(value = "SELECT p FROM Place p WHERE p.railwayCarriage = :railwayCarriage AND p.bookingStatus = :status")
+//        List<Place> findByRailwayCarriageAndBookingStatus(@Param(value = "railwayCarriage")
+//                                                          RailwayCarriage railwayCarriage,
+//                                                          @Param(value = "status") BookingStatusEnum status);
+//    }
 }

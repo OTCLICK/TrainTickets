@@ -2,6 +2,7 @@ package com.example.traintickets.repositories.impl;
 
 import com.example.traintickets.entities.Train;
 import com.example.traintickets.repositories.TrainRepository;
+import com.example.traintickets.repositories.base.BaseTrainRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +40,9 @@ public class TrainRepositoryImpl implements TrainRepository {
         return train;
     }
 
-    interface BaseTrainRepository extends JpaRepository<Train, Integer> {
-        @Query(value = "SELECT t FROM Train t WHERE t.id = :id")
-        List<Train> findById(@Param(value = "id") int id);
-    }
+//    @Repository
+//    interface BaseTrainRepository extends JpaRepository<Train, Integer> {
+//        @Query(value = "SELECT t FROM Train t WHERE t.id = :id")
+//        List<Train> findById(@Param(value = "id") int id);
+//    }
 }

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface PlaceRepository extends JpaRepository<Place, Integer> {
+public interface PlaceRepository {
 
     @Query(value = "SELECT p FROM Place p WHERE p.id = :id")
     List<Place> findById(@Param(value = "id") int id);

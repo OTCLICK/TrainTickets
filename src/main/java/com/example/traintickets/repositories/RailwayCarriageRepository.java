@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface RailwayCarriageRepository extends JpaRepository<RailwayCarriage, Integer> {
+public interface RailwayCarriageRepository {
 
     @Query(value = "SELECT r FROM RailwayCarriage r WHERE r.id = :id")
     List<RailwayCarriage> findById(@Param(value = "id") int id);

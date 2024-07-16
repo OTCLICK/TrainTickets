@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 
 @Repository
-public interface TicketRepository extends JpaRepository<Ticket, Integer> {
+public interface TicketRepository {
 
     @Query(value = "SELECT t FROM Ticket t WHERE t.id = :id")
     List<Ticket> findById(@Param(value = "id") int id);

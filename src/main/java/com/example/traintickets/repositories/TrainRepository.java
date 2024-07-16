@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface TrainRepository extends JpaRepository<Train, Integer> {
+public interface TrainRepository {
 
     @Query(value = "SELECT t FROM Train t WHERE t.id = :id")
     List<Train> findById(@Param(value = "id") int id);

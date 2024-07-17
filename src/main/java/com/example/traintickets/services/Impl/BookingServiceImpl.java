@@ -102,7 +102,7 @@ public class BookingServiceImpl implements BookingService {
 
         Passenger passenger = passengerList.get(0);
 
-        place.setBookingStatus(BookingStatusEnum.BOOKED);
+        place.setBookingStatus(BookingStatusEnum.BUSY);
         placeRepository.save(place);
 
         Ticket ticket = new Ticket(
@@ -121,6 +121,8 @@ public class BookingServiceImpl implements BookingService {
         }
 
         ticketRepository.save(ticket);
+        passenger.setTripsNumber(passenger.getTripsNumber() + 1);
+        passengerRepository.save(passenger);
 //        return ticket;
         return mapToDTO(ticket);
     }

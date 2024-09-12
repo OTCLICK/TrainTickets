@@ -1,9 +1,6 @@
 package com.example.traintickets.repositories;
 
-import com.example.traintickets.entities.BookingStatusEnum;
-import com.example.traintickets.entities.CarsTypesEnum;
-import com.example.traintickets.entities.Place;
-import com.example.traintickets.entities.RailwayCarriage;
+import com.example.traintickets.entities.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -15,14 +12,22 @@ import java.util.List;
 @Repository
 public interface PlaceRepository {
 
-    @Query(value = "SELECT p FROM Place p WHERE p.id = :id")
-    List<Place> findById(@Param(value = "id") int id);
+//    @Query(value = "SELECT p FROM Place p WHERE p.id = :id")
+//    List<Place> findById(@Param(value = "id") int id);
+//
+//    @Query("SELECT p FROM Place p WHERE p.railwayCarriage = :railwayCarriage AND p.bookingStatus = :status")
+//    List<Place> findByRailwayCarriageAndBookingStatus(@Param(value = "railwayCarriage") RailwayCarriage railwayCarriage,
+//                                                      @Param(value = "status") BookingStatusEnum status);
 
-    @Query("SELECT p FROM Place p WHERE p.railwayCarriage = :railwayCarriage AND p.bookingStatus = :status")
-    List<Place> findByRailwayCarriageAndBookingStatus(@Param(value = "railwayCarriage") RailwayCarriage railwayCarriage,
-                                                      @Param(value = "status") BookingStatusEnum status);
+    List<Place> findById(int id);
 
-    Place save(Place place);
+    List<Place> findByRailwayCarriageAndBookingStatus(RailwayCarriage carriage, BookingStatusEnum bookingStatus);
+
+    void save(Place place);
+
+    void update(Place place);
+
+//    Place save(Place place);
 
 
 //    List<Place> findAllByRailwayCarriage(RailwayCarriage railwayCarriage);

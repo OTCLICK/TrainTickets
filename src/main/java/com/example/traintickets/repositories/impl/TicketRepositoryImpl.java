@@ -2,8 +2,8 @@ package com.example.traintickets.repositories.impl;
 
 import com.example.traintickets.entities.Passenger;
 import com.example.traintickets.entities.Ticket;
+import com.example.traintickets.repositories.BaseRepo;
 import com.example.traintickets.repositories.TicketRepository;
-import com.example.traintickets.repositories.base.BaseTicketRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,39 +15,43 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class TicketRepositoryImpl implements TicketRepository {
+public class TicketRepositoryImpl extends BaseRepo<Ticket> implements TicketRepository {
 
-    @Autowired
-    private BaseTicketRepository baseTicketRepository;
+//    @Autowired
+//    private BaseTicketRepository baseTicketRepository;
 
     @PersistenceContext
     private EntityManager entityManager;
 
+    public TicketRepositoryImpl() {
+        super(Ticket.class);
+    }
+
     @Override
     public List<Ticket> findById(int id) {
-        return baseTicketRepository.findById(id);
-//        return entityManager.createQuery("SELECT t FROM Ticket t WHERE t.id = :id", Ticket.class)
-//                .setParameter("id", id)
-//                .getResultList();
+//        return baseTicketRepository.findById(id);
+        return entityManager.createQuery("SELECT t FROM Ticket t WHERE t.id = :id", Ticket.class)
+                .setParameter("id", id)
+                .getResultList();
     }
 
     @Override
     public List<Ticket> findByPassenger(Passenger passenger) {
-        return baseTicketRepository.findByPassenger(passenger);
-//        return entityManager.createQuery("SELECT t FROM Ticket t WHERE t.passenger = :passenger", Ticket.class)
-//                .setParameter("passenger", passenger)
-//                .getResultList();
+//        return baseTicketRepository.findByPassenger(passenger);
+        return entityManager.createQuery("SELECT t FROM Ticket t WHERE t.passenger = :passenger", Ticket.class)
+                .setParameter("passenger", passenger)
+                .getResultList();
     }
 
-    @Override
-    public Ticket save(Ticket ticket) {
-        if (ticket.getId() == 0) {
-            entityManager.persist(ticket);
-        } else {
-            entityManager.merge(ticket);
-        }
-        return ticket;
-    }
+//    @Override
+//    public Ticket save(Ticket ticket) {
+//        if (ticket.getId() == 0) {
+//            entityManager.persist(ticket);
+//        } else {
+//            entityManager.merge(ticket);
+//        }
+//        return ticket;
+//    }
 
 //    @Repository
 //    interface BaseTicketRepository extends JpaRepository<Ticket, Integer> {

@@ -16,13 +16,21 @@ import java.util.List;
 @Repository
 public interface TicketRepository {
 
-    @Query(value = "SELECT t FROM Ticket t WHERE t.id = :id")
-    List<Ticket> findById(@Param(value = "id") int id);
+//    @Query(value = "SELECT t FROM Ticket t WHERE t.id = :id")
+//    List<Ticket> findById(@Param(value = "id") int id);
+//
+//    @Query(value = "SELECT t FROM Ticket t WHERE t.passenger = :passenger")
+//    List<Ticket> findByPassenger(@Param(value = "passenger") Passenger passenger);
 
-    @Query(value = "SELECT t FROM Ticket t WHERE t.passenger = :passenger")
-    List<Ticket> findByPassenger(@Param(value = "passenger") Passenger passenger);
+    List<Ticket> findById(int id);
 
-    Ticket save(Ticket ticket);
+    List<Ticket> findByPassenger(Passenger passenger);
+
+    void save(Ticket ticket);
+
+    void update(Ticket ticket);
+
+//    Ticket save(Ticket ticket);
 
 //    List<Ticket> findAllByPlace(Place place);
 //

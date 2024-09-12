@@ -1,5 +1,6 @@
 package com.example.traintickets.repositories;
 
+import com.example.traintickets.entities.Passenger;
 import com.example.traintickets.entities.Train;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -11,10 +12,14 @@ import java.util.List;
 @Repository
 public interface TrainRepository {
 
-    @Query(value = "SELECT t FROM Train t WHERE t.id = :id")
-    List<Train> findById(@Param(value = "id") int id);
+//    @Query(value = "SELECT t FROM Train t WHERE t.id = :id")
+//    List<Train> findById(@Param(value = "id") int id);
 
-    Train save(Train train);
+    List<Train> findById(int id);
+
+    void save(Train train);
+
+//    Train save(Train train);
 
 //    List<Train> findAllByTrainNumber(String trainNumber);
 //

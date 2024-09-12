@@ -11,13 +11,21 @@ import java.util.List;
 @Repository
 public interface PassengerRepository {
 
-    @Query(value = "SELECT p FROM Passenger p WHERE p.id = :id")
-    List<Passenger> findById(@Param(value = "id") int id);
+//    @Query(value = "SELECT p FROM Passenger p WHERE p.id = :id")
+//    List<Passenger> findById(@Param(value = "id") int id);
+//
+//    @Query(value = "SELECT p FROM Passenger p WHERE p.email = :email")
+//    List<Passenger> findByEmail(@Param(value = "email") String email);
 
-    @Query(value = "SELECT p FROM Passenger p WHERE p.email = :email")
-    List<Passenger> findByEmail(@Param(value = "email") String email);
+    List<Passenger> findById(int id);
 
-    Passenger save(Passenger passenger);
+    List<Passenger> findByEmail(String email);
+
+    void save(Passenger passenger);
+
+    void update(Passenger passenger);
+
+//    Passenger save(Passenger passenger);
 
 //    //Search passengers to verify their purchase of train tickets
 //    @Query(value = "SELECT p FROM Passenger p " +

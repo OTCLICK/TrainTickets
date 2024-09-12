@@ -52,7 +52,12 @@ public class BookingServiceImpl implements BookingService {
         boolean isPrivileged = passenger.getPassportDetails().contains("privileges");
 
         place.setBookingStatus(BookingStatusEnum.BOOKED);
-        placeRepository.save(place);
+//        placeRepository.save(place);
+        if (place.getId() == 0) {
+            placeRepository.save(place);
+        } else {
+            placeRepository.update(place);
+        }
 
         Ticket ticket = new Ticket(
                 place.getRailwayCarriage().getTrain(),
@@ -63,7 +68,12 @@ public class BookingServiceImpl implements BookingService {
                 bookingTime,
                 paymentTime
         );
-        ticketRepository.save(ticket);
+//        ticketRepository.save(ticket);
+        if (ticket.getId() == 0) {
+            ticketRepository.save(ticket);
+        } else {
+            ticketRepository.update(ticket);
+        }
 
         long timeLimit = isPrivileged ? 1800000L : 900000L;
         long bookingTimeMillis = ticket.getBookingTime().getTime();
@@ -71,13 +81,28 @@ public class BookingServiceImpl implements BookingService {
 
         if (paymentTime == null || (paymentTimeMillis - bookingTimeMillis) > timeLimit) {
             place.setBookingStatus(BookingStatusEnum.FREE);
-            placeRepository.save(place);
+//            placeRepository.save(place);
+            if (place.getId() == 0) {
+                placeRepository.save(place);
+            } else {
+                placeRepository.update(place);
+            }
             return "Вы не успели оплатить билет в отведённое время!";
         } else {
             place.setBookingStatus(BookingStatusEnum.BUSY);
-            placeRepository.save(place);
+//            placeRepository.save(place);
+            if (place.getId() == 0) {
+                placeRepository.save(place);
+            } else {
+                placeRepository.update(place);
+            }
             passenger.setTripsNumber(passenger.getTripsNumber() + 1);
-            passengerRepository.save(passenger);
+//            passengerRepository.save(passenger);
+            if (passenger.getId() == 0) {
+                passengerRepository.save(passenger);
+            } else {
+                passengerRepository.update(passenger);
+            }
             return "Билет успешно оплачен!";
         }
     }
@@ -103,7 +128,12 @@ public class BookingServiceImpl implements BookingService {
         Passenger passenger = passengerList.get(0);
 
         place.setBookingStatus(BookingStatusEnum.BUSY);
-        placeRepository.save(place);
+//        placeRepository.save(place);
+        if (place.getId() == 0) {
+            placeRepository.save(place);
+        } else {
+            placeRepository.update(place);
+        }
 
         Ticket ticket = new Ticket(
                 place.getRailwayCarriage().getTrain(),
@@ -115,16 +145,32 @@ public class BookingServiceImpl implements BookingService {
                 paymentTime
         );
         ticketRepository.save(ticket);
+        if (ticket.getId() == 0) {
+            ticketRepository.save(ticket);
+        } else {
+            ticketRepository.update(ticket);
+        }
 
         if (passenger.getTripsNumber() >= 5) {
             ticket.setTicketPrice(ticket.getTicketPrice() / 2);
         }
 
-        ticketRepository.save(ticket);
+//        ticketRepository.save(ticket);
+        if (ticket.getId() == 0) {
+            ticketRepository.save(ticket);
+        } else {
+            ticketRepository.update(ticket);
+        }
         passenger.setTripsNumber(passenger.getTripsNumber() + 1);
-        passengerRepository.save(passenger);
+//        passengerRepository.save(passenger);
+        if (passenger.getId() == 0) {
+            passengerRepository.save(passenger);
+        } else {
+            passengerRepository.update(passenger);
+        }
 //        return ticket;
         return mapToDTO(ticket);
+//        return BookingPlaceDTO;
     }
 
     private TicketDTO mapToDTO(Ticket ticket) {
@@ -134,6 +180,10 @@ public class BookingServiceImpl implements BookingService {
         ticketDTO.setRailwayCarriage(mapToDTO(ticket.getRailwayCarriage()));
         ticketDTO.setPlace(mapToDTO(ticket.getPlace()));
         ticketDTO.setPassenger(mapToDTO(ticket.getPassenger()));
+//        ticketDTO.setTrain(ticket.getTrain());
+//        ticketDTO.setRailwayCarriage(ticket.getRailwayCarriage());
+//        ticketDTO.setPlace(ticket.getPlace());
+//        ticketDTO.setPassenger(ticket.getPassenger());
         ticketDTO.setTicketPrice(ticket.getTicketPrice());
         ticketDTO.setBookingTime(ticket.getBookingTime());
         ticketDTO.setPaymentTime(ticket.getPaymentTime());
